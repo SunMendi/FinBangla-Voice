@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body style="background-image: url('media/upload/primary/background.JPEG'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center;">
+<section class="py-2">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000" style="width:100%; height: 100vh; overflow: hidden;">
+            <a href="https://www.youtube.com/playlist?list=PLTIl62wHQdotz6JoQKudAyYAolLwsl1Wi" target="blank"><img src="media/upload/primary/course.jpg" class="d-block" style="width:95%; display:flex; margin:auto; height:87vh; align-items:center; justify-content:center;
+              border:1px solid black; border-radius: 10px; box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5);" alt="Sorry"></a>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+           <a href="https://www.facebook.com/profile.php?id=61560033836918" target="blank"> <img src="media/upload/primary/facebook.jpg" class="d-block" style="width:95%; display:flex; margin:auto; height:87vh; align-items:center; justify-content:center;
+            border:1px solid black; border-radius: 10px;box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5); " alt="Sorry"></a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://www.youtube.com/@FinBanglaVoice" target="blank"><img src="media/upload/primary/youtube.jpg" class="d-block" style="width:95%; display:flex; margin:auto; height:87vh; align-items:center; justify-content:center;
+            border:1px solid black; border-radius: 10px ; box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5); " alt="Sorry"></a>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</section>
+
+<section>
+  <h1 class="text-primary font-weight-bold my-5 w-25 border border-primary rounded shadow-lg bg-white d-flex justify-content-center mx-auto p-3  ">Our Services</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card" style="width: 23rem;">
+          <img src="media/upload/primary/language.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" style="color:red;">Finnish Language Couse In Bangla For Beginners</h5>
+            <p class="card-text">"Your gateway to Finland! Expert guidance on visas, permits, and documentation from seasoned consultants who know Finnish immigration inside out. We handle the complexities while you focus on your exciting journey ahead."</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card" style="width: 23rem;">
+          <img src="media/upload/primary/immigration.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" style="color:red;">Immigration Consultation for Finland
+            </h5>
+            <p class="card-text">"Learn Finnish in your native Bangla! Our beginner-friendly course breaks down complex Finnish grammar and pronunciation with clear Bangla explanations. Start speaking Finnish with confidence through our culturally-tailored lessons."</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card" style="width: 23rem;">
+          <img src="media/upload/primary/educationconsultancy.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" style="color:red;"> Study in Finland: Expert Consultation</h5>
+            <p class="card-text">"Your dream of studying in Finland starts here! Get personalized guidance on university selection, applications, and student visas. We'll help you access Finland's world-class, tuition-free education system with expert support at every step."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+</body>
+{% endblock %}

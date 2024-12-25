@@ -1,0 +1,53 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <!-- Left-aligned section -->
+      <a class="navbar-brand" href="{% url 'home' %}">FinBangla Voice</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Blogs</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about' %}">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'session' %}">Session</a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Courses
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://www.youtube.com/playlist?list=PLTIl62wHQdotz6JoQKudAyYAolLwsl1Wi" target="blank">Learn Finnish From Bangla</a></li>
+                      <li><a class="dropdown-item" href="#">Another Course</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+              </li>
+          </ul>
+
+          <!-- Right-aligned section -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Profile ({{ user.username }})
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="{% url 'update_user' %}">User Profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'update_info' %}">User Info</a></li>
+                      <li><a class="dropdown-item" href="{% url 'update_password' %}">Change Password</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+              {% endif %}
+          </ul>
+      </div>
+  </div>
+</nav>

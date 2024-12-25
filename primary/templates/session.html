@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="session-container">
+    <div class="container py-5">
+        <div class="profile-container">
+            <!-- Profile Image Column -->
+            <div class="profile-image-container">
+                <img src="{% static 'images/session/alamSir.jpg' %}" alt="Finnish Language Teacher" class="profile-image">
+                <h2>Dr. Sm Shafiqul Alam</h2> <hr>
+                <h3 class="text-muted mb-4">Finnish Language Expert | Study, Job, and Immigration Consultant</h3>
+            </div>
+            
+            <!-- Information Column -->
+            <div class="profile-info">
+                <h1 class="display-4 mb-3">Dr. Sm Shafiqul Alam</h1>
+                <h3 class="text-muted mb-4">Finnish Language Expert | Study, Job, and Immigration Consultant</h3>
+                
+                <div class="description mb-4">
+                    <p class="lead">Dedicated Finnish language instructor and Study, Job, and Immigration Consultantwith over 10 years of experience.</p>
+                </div>
+                 <!-- Action Buttons -->
+                <div class="contact-buttons">
+                    <h1>Contact Me</h1>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info mb-4">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-details">
+                            <span class="contact-label">Email:</span>
+                            <span class="contact-value">finbanglavoice@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-details">
+                            <span class="contact-label">WhatsApp:</span>
+                            <span class="contact-value">+358 40 9369708</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Helsinki, Finland</span>
+                    </div>
+                </div>
+
+            
+              
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

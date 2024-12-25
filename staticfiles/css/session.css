@@ -1,0 +1,113 @@
+.session-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Profile Container Styling */
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Profile Image Styling */
+.profile-image-container {
+    flex: 1 1 300px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Profile Info Styling */
+.profile-info {
+    flex: 2 1 500px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Items Styling */
+/* Delete or comment out any existing contact-related CSS */
+
+/* Contact Section Styling */
+.contact-info {
+    margin-bottom: 2rem;
+    padding-left: 20px;  /* Add left padding to move content left */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-left: -60px;  /* Negative margin to offset parent padding */
+}
+
+.contact-item i {
+    font-size: 1.25rem;
+    color: #0d6efd;
+    width: 25px;  /* Reduced width */
+    margin-right: 0.75rem;  /* Reduced margin */
+}
+
+.contact-details {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;  /* Reduced gap */
+}
+
+.contact-label {
+    color: #6c757d;
+    font-weight: 500;
+    min-width: 70px;  /* Reduced min-width */
+}
+
+.contact-value {
+    color: #212529;
+    margin-left: -5px;  /* Move value slightly left */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-image-container {
+        margin-bottom: 30px;
+    }
+    
+    .profile-info {
+        text-align: center;
+    }
+    
+    .contact-item {
+        justify-content: center;
+    }
+    
+    .contact-buttons .btn {
+        display: block;
+        margin-bottom: 15px;
+    }
+}
+.contact-buttons {
+    margin-top: -20px;  /* Move up */
+    margin-left: -10px;  /* Move left */
+}
+
+.contact-buttons .btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+}
+
+.contact-buttons .btn i {
+    margin-right: 8px;
+}

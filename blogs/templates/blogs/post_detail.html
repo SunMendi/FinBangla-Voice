@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card text-center">
+    <div class="card-header">
+       <b> Author Name : </b><a class="mr-2 text-decoration-none" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title "><b> Article Name : </b><a class="text-decoration-none" >{{ post.title }}</a></h5>
+      <p class="card-text">Description : {{ post.content }}</p>
+      
+      {% if object.author == user %}
+      <div>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">Posted On : {{ post.date_posted | date:"F d, Y" }}</small>
+    </div>
+  </div>
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}
+<!-- | date:"F d, Y" -->

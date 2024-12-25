@@ -1,0 +1,40 @@
+/* Navbar styles */
+.navbar {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #00B4DB, #0083B0) !important;
+   
+    
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: 600;
+    color: white !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #E0E0E0 !important;
+}
+.nav-link.active {
+    color: #FFFFFF !important;
+    font-weight: 600;
+}
+
+/* Style dropdown items */
+.dropdown-menu {
+    background-color: #00B4DB;
+}
+
+.dropdown-item {
+    color: red !important;
+}
+
+.dropdown-item:hover {
+    background-color: #b00000 !important;
+    color: hsl(0, 0%, 88%) !important;
+}

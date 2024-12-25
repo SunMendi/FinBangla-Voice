@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Blog part starts -->
+<div>
+    {% if user.is_authenticated %}
+    <p style="font-size: larger; 
+        text-align: center; 
+        font-weight: bold; 
+        margin: 10px; 
+        padding: 10px; 
+        border: 1px solid gray; 
+        border-radius:10px"
+     class="text-primary">Create Your Own Blog Here !!! </p>
+    <a class="btn btn btn-outline-info btn-md mt-2 mb-4" style="display: block; text-align: center ; width: 130px; margin: 10px auto; padding:10px; border-radius: 10px; font-size: 18px; font-weight: bold" href="{% url 'post-create' %}">Create Blog</a>
+    {% endif %}
+    {% for post in posts %}
+    <div class="card text-center">
+        <div class="card-header">
+           <b> Author Name : </b><a class="mr-2 text-decoration-none" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title "><b> Article Name : </b><a class="text-decoration-none" >{{ post.title }}</a></h5>
+          <p class="card-text">Description : {{ post.content |truncatewords:20}}</p>
+          <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Read The Article</a>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Posted On : {{ post.date_posted | date:"F d, Y" }}</small>
+        </div>
+      </div>
+{% endfor %}
+</div>
+<!-- Blog part ends  -->
+
+<!-- Pagination starts -->
+<div>
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number}}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages}}">Last</a>
+        {% endif %}
+    {% endif %}
+</div>
+<!-- Pagination ends -->
+
+
+
+{% endblock %}
