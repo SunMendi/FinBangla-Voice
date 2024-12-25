@@ -30,8 +30,8 @@ SECRET_KEY = 'django-insecure-2+($e*p2&wom#wfu!+v-%_)tzp#wu_=y5efw5po(!v8hhyvch9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app']
 
 # Application definition
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'blogs',
     'crispy_forms',
     'crispy_bootstrap5',
+    'whitenoise.runserver_nostatic',
+
 ]
 
 MIDDLEWARE = [
@@ -57,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'voice.urls'
@@ -139,8 +142,10 @@ STATICFILES_DIRS=[
      os.path.join(BASE_DIR, 'blogs/static'),
     os.path.join(BASE_DIR, 'primary', 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# white noise static staff
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
