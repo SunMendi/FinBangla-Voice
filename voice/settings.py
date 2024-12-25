@@ -27,11 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-2+($e*p2&wom#wfu!+v-%_)tzp#wu_=y5efw5po(!v8hhyvch9'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in git!
 DEBUG = True
 
 ALLOWED_HOSTS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://finbangla-voice-production.up.railway.app']
 
 # Application definition
 
