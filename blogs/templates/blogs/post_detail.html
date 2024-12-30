@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <h5 class="card-title "><b> Article Name : </b><a class="text-decoration-none" >{{ post.title }}</a></h5>
-      <p class="card-text">Description : {{ post.content }}</p>
+      <p class="card-text"><b>Description : </b>{{ post.content }}</p>
       
       {% if object.author == user and user.is_superuser %}
       <div>
