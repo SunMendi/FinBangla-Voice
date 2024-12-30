@@ -30,8 +30,8 @@ SECRET_KEY = 'django-insecure-2+($e*p2&wom#wfu!+v-%_)tzp#wu_=y5efw5po(!v8hhyvch9
 # SECURITY WARNING: don't run with debug turned on in git!
 DEBUG = True
 
-ALLOWED_HOSTS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://finbangla-voice-production.up.railway.app']
+ALLOWED_HOSTS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app','6f2b-103-126-218-177.ngrok-free.app','127.0.0.1','localhost']
+CSRF_TRUSTED_ORIGINS = ['https://finbangla-voice-production.up.railway.app', 'https://6f2b-103-126-218-177.ngrok-free.app ']
 
 # Application definition
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'whitenoise.runserver_nostatic',
+
 
 ]
 

@@ -9,7 +9,7 @@
         <h5 class="card-title "><b> Article Name : </b><a class="text-decoration-none" >{{ post.title }}</a></h5>
       <p class="card-text">Description : {{ post.content }}</p>
       
-      {% if object.author == user %}
+      {% if object.author == user and user.is_superuser %}
       <div>
           <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
           <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
