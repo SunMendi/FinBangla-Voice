@@ -28,10 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2+($e*p2&wom#wfu!+v-%_)tzp#wu_=y5efw5po(!v8hhyvch9'
 
 # SECURITY WARNING: don't run with debug turned on in git!
-DEBUG = True
-
-ALLOWED_HOSTS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app','6f2b-103-126-218-177.ngrok-free.app','127.0.0.1','localhost']
-CSRF_TRUSTED_ORIGINS = ['https://finbangla-voice-production.up.railway.app', 'https://6f2b-103-126-218-177.ngrok-free.app ']
+DEBUG = False 
+#for using ngrok :'6f2b-103-126-218-177.ngrok-free.app','127.0.0.1','localhost'
+ALLOWED_HOSTS = ['finbangla-voice-production.up.railway.app','https://finbangla-voice-production.up.railway.app']
+#for using ngro: 'https://6f2b-103-126-218-177.ngrok-free.app '
+CSRF_TRUSTED_ORIGINS = ['https://finbangla-voice-production.up.railway.app']
 
 # Application definition
 
@@ -108,18 +109,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
