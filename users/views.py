@@ -3,111 +3,138 @@ from .models import Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm 
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-import json
 
-# Create your views here.
+from .forms import SignUpForm
+import json
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .models import Profile  # Make sure this import is correct
+
 
 def login_user(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+    # If user is already authenticated, redirect to home
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
-            
-            #Do some shopping cart stuff
-            current_user = Profile.objects.get(user__id=request.user.id)
-           
-            messages.success(request, ("You are now Logged in..."))
-            return redirect('home')
+            messages.success(request, "You are now logged in.")
+            return redirect("home")  # Redirect to home page after successful login
         else:
-            messages.warning(request, ("Error Logging In - Please try again !!!"))
-            return redirect('login')
+            messages.error(request, "Invalid username or password.")
+            return render(request, "login.html")
+
     else:
-        return render(request, 'login.html', {})
+        form = AuthenticationForm()
+    return render(request, "login.html", {"form": form})
+
 
 def logout_user(request):
     logout(request)
-    messages.success(request, "You are now logged out !!!")
-    return redirect('home')
+    messages.success(request, "You are now logged out!")
+    return redirect("login")  # Redirect to login
+
 
 def register_user(request):
-    form = SignUpForm()
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            #log in user
+            user = form.save()
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password1")
+            # Log in user
             user = authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(request, "You Have Registered Successfully !!!")
-            messages.success(request, "Please Update Your Profile Informations for Further Purposes.")
-            return redirect('update_info')
+            if user is not None:
+                login(request, user)
+                messages.success(request, "You have registered successfully!")
+                messages.info(
+                    request,
+                    "Please update your profile information for further purposes.",
+                )
+                return redirect("update_info")
+            else:
+                messages.error(
+                    request, "An error occurred during registration. Please try again."
+                )
         else:
-            for error in list(form.errors.values()):
-                messages.error(request, error)
-            return redirect('register')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
-        return render(request, 'register.html', {'form': form})
-    
+        form = SignUpForm()
+    return render(request, "register.html", {"form": form})
+
+
 def update_user(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
         user_form = UpdateUserForm(request.POST or None, instance=current_user)
-        
+
         if user_form.is_valid():
             user_form.save()
-            
+
             login(request, current_user)
             messages.success(request, "Your profile has been updated successfully !!!")
-            return redirect('home')
-        return render(request, 'update_user.html', {'user_form': user_form})
+            return redirect("home")
+        return render(request, "update_user.html", {"user_form": user_form})
     else:
         messages.success(request, "You must be logged in to view that page !!!")
-        return redirect('home')
-    
+        return redirect("home")
+
+
 def update_password(request):
     if request.user.is_authenticated:
         current_user = request.user
-        #Did they fill out the form
-        if request.method == 'POST':
+        # Did they fill out the form
+        if request.method == "POST":
             form = ChangePasswordForm(current_user, request.POST)
             if form.is_valid():
                 form.save()
-                messages.success(request, "Your password has been updated successfully !!! Please Log in again.")
+                messages.success(
+                    request,
+                    "Your password has been updated successfully !!! Please Log in again.",
+                )
                 # login(request, current_user)
-                return redirect('login')
+                return redirect("login")
             else:
                 for error in list(form.errors.values()):
                     messages.error(request, error)
-                return redirect('update_password')
+                return redirect("update_password")
 
         else:
             form = ChangePasswordForm(current_user)
-            return render(request, 'update_password.html', {'form':form})
+            return render(request, "update_password.html", {"form": form})
     else:
         messages.success(request, "You must be logged in to view that page !!!")
-        return redirect('home')
-   
+        return redirect("home")
+
+
 def update_info(request):
     if request.user.is_authenticated:
-        #Get Current User
+        # Get Current User
         current_user = Profile.objects.get(user__id=request.user.id)
-    
-        #Get Original User Form
+
+        # Get Original User Form
         form = UserInfoForm(request.POST or None, instance=current_user)
-        
+
         if form.is_valid():
-            #Save original Form
+            # Save original Form
             form.save()
-            messages.success(request, "Your Profile Info has been Updated Successfully !!!")
-            return redirect('home')
-        return render(request, 'update_info.html', {'form': form})
+            messages.success(
+                request, "Your Profile Info has been Updated Successfully !!!"
+            )
+            return redirect("home")
+        return render(request, "update_info.html", {"form": form})
     else:
         messages.success(request, "You must be logged in to view that page !!!")
-        return redirect('home')
+        return redirect("home")

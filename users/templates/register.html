@@ -1,25 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'blogs/base.html' %}
 {% load static %}
+
 {% block content %}
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Register.</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Register for a user account !</p>
+<div class="min-h-screen bg-gray-50">
+    <header class="bg-blue-900 py-12">
+        <div class="container mx-auto px-4 max-w-3xl text-center">
+            <h1 class="text-4xl font-bold text-white animate-fadeIn delay-100">Register</h1>
+            <p class="text-lg text-white/70 mt-2 animate-fadeIn delay-200">Create your user account!</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 max-w-md py-12">
+        <div class="bg-white rounded-xl shadow-2xl p-8 animate-fadeIn delay-300">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-4 p-4 {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %} rounded-md">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="post" action="{% url 'register' %}" class="space-y-6">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="space-y-2">
+                        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                            {{ field.label }}
+                        </label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            {{ field }}
+                        </div>
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-md shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105">
+                    Register
+                </button>
+            </form>
         </div>
     </div>
-</header>
-<br/>
-
-<div class="container px-4 px-lg-5 w-50">
-    <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <br/> <br/>
-
-        <button type="submit" class="btn btn-secondary ">Register</button>
-    </form>
 </div>
-<br/>
-
-{% endblock %}
+{% endblock %}

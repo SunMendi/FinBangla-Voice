@@ -1,25 +1,30 @@
-{% extends "base.html" %}
+{% extends "blogs/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
 {% block content %}
+{% load static %}
 
-<div class="card text-center">
-    <div class="card-header">
-       <b> Author Name : </b><a class="mr-2 text-decoration-none" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+<div class="bg-white rounded-lg shadow-lg p-8 mb-8 animate-fadeIn">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <span class="text-gray-600 font-medium">Author:</span>
+            <a href="{% url 'user-posts' post.author.username %}" class="text-blue-600 hover:underline font-semibold transition-colors">
+                {{ post.author }}
+            </a>
+        </div>
+        <span class="text-sm text-gray-500">Posted on: {{ post.date_posted | date:"F d, Y" }}</span>
     </div>
-    <div class="card-body">
-        <h5 class="card-title "><b> Article Name : </b><a class="text-decoration-none" >{{ post.title }}</a></h5>
-      <p class="card-text"><b>Description : </b>{{ post.content }}</p>
-      
-      {% if object.author == user and user.is_superuser %}
-      <div>
-          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-      </div>
-      {% endif %}
+
+    <h1 class="text-4xl font-bold text-gray-900 mb-6">{{ post.title }}</h1>
+    <p class="text-gray-700 text-lg leading-relaxed mb-8">{{ post.content }}</p>
+
+    {% if post.author == user or user.is_superuser %}
+    <div class="flex gap-4 mb-8">
+        <a href="{% url 'post-update' post.id %}" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-6 rounded-full transition transform hover:scale-105">Edit</a>
+        <a href="{% url 'post-delete' post.id %}" class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-full transition transform hover:scale-105">Delete</a>
     </div>
-    <div class="card-footer">
-        <small class="text-muted">Posted On : {{ post.date_posted | date:"F d, Y" }}</small>
-    </div>
-  </div>
-<br><br><br><br><br><br><br><br><br><br>
-{% endblock content %}
-<!-- | date:"F d, Y" -->
+    {% endif %}
+
+    <a href="{% url 'blog-home' %}" class="text-teal-600 hover:underline">&larr; Back to Home</a>
+</div>
+
+{% endblock %}

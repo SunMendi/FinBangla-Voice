@@ -1,47 +1,53 @@
-{% extends "base.html" %}
+{% extends "blogs/base.html" %}
+
 {% block content %}
-<h1 class="mb-3">Posts by {{view.kwargs.username }} ({{page_obj.paginator.count}})</h1>
-<!-- Blog part starts -->
-<div>
-    {% for post in posts %}
-    <article class="media content-section">
+<div class="min-h-screen bg-gray-50 py-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
         
-<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" style="float: left;">
-        <div class="media-body" >
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                <small class="text-muted">{{ post.date_posted | date:"F d, Y" }}</small>
-            </div>
-           
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2><br>
-            <p class="article-content">{{ post.content }}</p>
+        <!-- Blog posts -->
+        <div class="space-y-8">
+            {% for post in posts %}
+            <article class="bg-white rounded-xl shadow-md overflow-hidden animate-fadeIn">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <img class="h-12 w-12 rounded-full object-cover mr-4" src="{{ post.author.profile.image.url }}" alt="{{ post.author.username }}">
+                        <div>
+                            <a href="{% url 'user-posts' post.author.username %}" class="text-blue-600 hover:text-blue-800 font-medium">{{ post.author }}</a>
+                            <p class="text-gray-500 text-sm">{{ post.date_posted | date:"F d, Y" }}</p>
+                        </div>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                        <a href="{% url 'post-detail' post.id %}" class="hover:text-blue-600">{{ post.title }}</a>
+                    </h2>
+                    <p class="text-gray-600">{{ post.content }}</p>
+                </div>
+            </article>
+            {% endfor %}
         </div>
-    </article>
-{% endfor %}
-</div>
-<!-- Blog part ends  -->
 
-<!-- Pagination starts -->
-<div>
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number}}">Previous</a>
-        {% endif %}
-
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
-            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <div class="flex justify-center space-x-2 mt-8">
+            {% if page_obj.has_previous %}
+                <a class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md" href="?page=1">First</a>
+                <a class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md" href="?page={{ page_obj.previous_page_number }}">Previous</a>
             {% endif %}
-        {% endfor %}
 
-        {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages}}">Last</a>
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="bg-blue-600 text-white font-medium py-2 px-4 rounded-md" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
         {% endif %}
-    {% endif %}
+    </div>
 </div>
-<!-- Pagination ends -->
 {% endblock content %}

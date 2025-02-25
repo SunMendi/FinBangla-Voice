@@ -1,69 +1,250 @@
-{% extends "base.html" %}
+{% extends "blogs/base.html" %}
 {% load static %}
+
 {% block content %}
-<body style="background-image: url('media/upload/primary/background.JPEG'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center;">
-<section class="py-2">
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="3000" style="width:100%; height: 100vh; overflow: hidden;">
-            <a href="https://www.youtube.com/playlist?list=PLTIl62wHQdotz6JoQKudAyYAolLwsl1Wi" target="blank"><img src="media/upload/primary/course.jpg" class="d-block" style="width:95%; display:flex; margin:auto; height:87vh; align-items:center; justify-content:center;
-              border:1px solid black; border-radius: 10px; box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5);" alt="Sorry"></a>
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-           <a href="https://www.facebook.com/profile.php?id=61560033836918" target="blank"> <img src="media/upload/primary/facebook.jpg" class="d-block" style="width:95%; display:flex; margin:auto; height:87vh; align-items:center; justify-content:center;
-            border:1px solid black; border-radius: 10px;box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5); " alt="Sorry"></a>
-          </div>
-          <div class="carousel-item">
-            <a href="https://www.youtube.com/@FinBanglaVoice" target="blank"><img src="media/upload/primary/youtube.jpg" class="d-block" style="width:95%; display:flex; margin:auto; height:87vh; align-items:center; justify-content:center;
-            border:1px solid black; border-radius: 10px ; box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5); " alt="Sorry"></a>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-</section>
+<!-- Main Navigation -->
 
-<section>
-  <h1 class="text-primary font-weight-bold my-5 w-25 border border-primary rounded shadow-lg bg-white d-flex justify-content-center mx-auto p-3  ">Our Services</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card" style="width: 23rem;">
-          <img src="media/upload/primary/language.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" style="color:red;">Finnish Language Couse In Bangla For Beginners</h5>
-            <p class="card-text">"Your gateway to Finland! Expert guidance on visas, permits, and documentation from seasoned consultants who know Finnish immigration inside out. We handle the complexities while you focus on your exciting journey ahead."</p>
-          </div>
+
+
+<!-- Navigation -->
+
+
+<!-- Hero Section -->
+<div class="pt-16">
+    <!-- Main Content -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-400 min-h-[600px]">
+        <div class="container mx-auto px-4 py-20">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-5xl font-bold text-white mb-6">Learn Finnish Language</h1>
+                <p class="text-xl text-white/90 mb-8">
+                    Join thousands of students learning Finnish from native Bangla speakers.
+                    Start your journey to Finland today!
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-all transform hover:scale-105">
+                        Start Learning
+                    </a>
+                    <a href="#" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all transform hover:scale-105">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card" style="width: 23rem;">
-          <img src="media/upload/primary/immigration.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" style="color:red;">Immigration Consultation for Finland
-            </h5>
-            <p class="card-text">"Learn Finnish in your native Bangla! Our beginner-friendly course breaks down complex Finnish grammar and pronunciation with clear Bangla explanations. Start speaking Finnish with confidence through our culturally-tailored lessons."</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card" style="width: 23rem;">
-          <img src="media/upload/primary/educationconsultancy.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" style="color:red;"> Study in Finland: Expert Consultation</h5>
-            <p class="card-text">"Your dream of studying in Finland starts here! Get personalized guidance on university selection, applications, and student visas. We'll help you access Finland's world-class, tuition-free education system with expert support at every step."</p>
-          </div>
-        </div>
-      </div>
     </div>
-</section>
+
+    <!-- Featured Courses -->
+    <div class="bg-gray-50 py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all">
+                    <div class="relative">
+                        <img src="{{ MEDIA_URL }}upload/primary/course.jpg" alt="Finnish Course" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">Featured Course</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Finnish Language Course</h3>
+                        <p class="text-gray-600 mb-4">Learn Finnish from native Bangla speakers</p>
+                        <a href="https://www.youtube.com/playlist?list=PLTIl62wHQdotz6JoQKudAyYAolLwsl1Wi" 
+                           class="inline-flex items-center text-blue-500 hover:text-blue-600">
+                            Start Learning
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Facebook Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all">
+                    <div class="relative">
+                        <img src="{{ MEDIA_URL }}upload/primary/facebook.jpg" alt="Facebook Community" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">Community</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Join Our Community</h3>
+                        <p class="text-gray-600 mb-4">Connect with fellow learners</p>
+                        <a href="https://www.facebook.com/profile.php?id=61560033836918" 
+                           class="inline-flex items-center text-blue-500 hover:text-blue-600">
+                            Follow Us
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- YouTube Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all">
+                    <div class="relative">
+                        <img src="{{ MEDIA_URL }}upload/primary/youtube.jpg" alt="YouTube Channel" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm">Video Lessons</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Video Lessons</h3>
+                        <p class="text-gray-600 mb-4">Watch our educational content</p>
+                        <a href="https://www.youtube.com/@FinBanglaVoice" 
+                           class="inline-flex items-center text-blue-500 hover:text-blue-600">
+                            Subscribe Now
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="bg-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 animate-fadeIn delay-100">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto animate-fadeIn delay-200">Comprehensive solutions for your Finnish journey</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Language Course -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-fadeIn delay-300">
+                    <img src="{{ MEDIA_URL }}upload/primary/language.jpg" alt="Language Course" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="text-center text-white p-4">
+                            <h3 class="text-xl font-bold mb-2">Finnish Language Course</h3>
+                            <p class="text-sm">Expert guidance on Finnish language learning from Bangla</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <a href="#" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Immigration -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-fadeIn delay-400">
+                    <img src="{{ MEDIA_URL }}upload/primary/immigration.jpg" alt="Immigration" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="text-center text-white p-4">
+                            <h3 class="text-xl font-bold mb-2">Immigration Consultation</h3>
+                            <p class="text-sm">Guidance on Finnish immigration in Bangla</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <a href="#" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Education -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-fadeIn delay-500">
+                    <img src="{{ MEDIA_URL }}upload/primary/educationconsultancy.jpg" alt="Education" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="text-center text-white p-4">
+                            <h3 class="text-xl font-bold mb-2">Education Consultancy</h3>
+                            <p class="text-sm">Personalized guidance for studying in Finland</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <a href="#" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-teal-500 to-blue-500 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="{{ MEDIA_URL }}upload/primary/alamSir.jpg" alt="Dr.Sm Alam" class="w-16 h-16 rounded-full border-2 border-white">
+                    <div class="text-white">
+                        <h3 class="font-bold">Dr. Sm Alam</h3>
+                        <p class="text-white/80">Founder, FinBangla Voice</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61560033836918" class="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-blue-50 transition-colors">
+                        Follow Us
+                    </a>
+                    <a href="https://www.youtube.com/@FinBanglaVoice" class="bg-white text-red-600 px-6 py-2 rounded-full hover:bg-blue-50 transition-colors">
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 
 
-</body>
+
+<!-- Add custom styles for animations and components -->
+<style>
+    .animate-gradient-x {
+        animation: gradient 15s ease infinite;
+        background-size: 400% 400%;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .btn-primary {
+        @apply bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    }
+
+    .btn-secondary {
+        @apply bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105;
+    }
+
+    .delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .delay-300 {
+        animation-delay: 300ms;
+    }
+
+    .delay-400 {
+        animation-delay: 400ms;
+    }
+
+    .delay-500 {
+        animation-delay: 500ms;
+    }
+
+    .delay-600 {
+        animation-delay: 600ms;
+    }
+</style>
 {% endblock %}

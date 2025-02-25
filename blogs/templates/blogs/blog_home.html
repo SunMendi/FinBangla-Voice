@@ -1,63 +1,79 @@
-{% extends "base.html" %}
+{% extends "blogs/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
 {% load static %}
 
-{% block content %}
 
-<!-- Blog part starts -->
-<div>
+<div class="container mx-auto py-12 max-w-5xl">
+
+    <!-- Blog Header with Animation -->
+    <header class="bg-gradient-to-r from-teal-500 to-blue-600 text-white rounded-lg shadow-lg p-6 mb-8 text-center animate-fadeIn">
+        <h1 class="text-4xl font-bold tracking-tight">Welcome to the Blog</h1>
+        <p class="mt-2 text-lg text-teal-100">Explore insightful articles and engaging stories.</p>
+    </header>
+
+    <!-- Blog Creation Prompt (for superusers) with Animation -->
     {% if user.is_superuser %}
-    <p style="font-size: larger; 
-        text-align: center; 
-        font-weight: bold; 
-        margin: 10px; 
-        padding: 10px; 
-        border: 1px solid gray; 
-        border-radius:10px"
-     class="text-primary">Create Your Own Blog Here !!! </p>
-    <a class="btn btn btn-outline-info btn-md mt-2 mb-4" style="display: block; text-align: center ; width: 130px; margin: 10px auto; padding:10px; border-radius: 10px; font-size: 18px; font-weight: bold" href="{% url 'post-create' %}">Create Blog</a>
+    <div class="bg-gray-100 rounded-lg shadow-md p-6 mb-8 text-center animate-fadeIn delay-100">
+        <p class="text-xl font-semibold text-gray-800">Create Your Own Blog Here!</p>
+        <a href="{% url 'post-create' %}" class="mt-4 inline-block bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">Create Blog</a>
+    </div>
     {% endif %}
-    {% for post in posts %}
-    <div class="card text-center">
-        <div class="card-header">
-           <b> Author Name : </b><a class="mr-2 text-decoration-none" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title "><b> Article Name : </b><a class="text-decoration-none" >{{ post.title }}</a></h5>
-          <p class="card-text"><b>Description : </b>{{ post.content |truncatewords:20}}</p>
-          <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Read The Article</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Posted On : {{ post.date_posted | date:"F d, Y" }}</small>
-        </div>
-      </div>
-{% endfor %}
-</div>
-<!-- Blog part ends  -->
 
-<!-- Pagination starts -->
-<div>
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number}}">Previous</a>
-        {% endif %}
+    <!-- Blog Posts Grid with Dynamic Hover Effects -->
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for post in posts %}
+            <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fadeIn delay-{{ forloop.counter|add:'100' }} flex flex-col h-full">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-600 font-medium">Author:</span>
+                        <a href="{% url 'user-posts' post.author.username %}" class="text-blue-600 hover:underline font-semibold transition-colors">{{ post.author }}</a>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        Article: <a href="{% url 'post-detail' post.id %}" class="text-teal-600 hover:underline">{{ post.title }}</a>
+                    </h2>
+                    <p class="text-gray-700 mb-4 line-clamp-3">{{ post.content | truncatewords:20 }}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'post-detail' post.id %}" 
+                           class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-5 rounded-full transition duration-300 transform hover:scale-105">
+                            Read The Article
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-b-lg text-sm text-gray-500 mt-auto">
+                    Posted On: {{ post.date_posted | date:"F d, Y" }}
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-8 text-gray-500">
+                No posts available.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
-            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    <!-- Pagination with Dynamic Styling -->
+    <div class="mt-12 flex justify-center gap-2 flex-wrap">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">First</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">Previous</a>
             {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages}}">Last</a>
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <span class="bg-blue-600 text-white font-medium py-2 px-4 rounded-full">{{ num }}</span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">Last</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
+    </div>
 </div>
-<!-- Pagination ends -->
 
 
-<br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

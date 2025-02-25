@@ -1,17 +1,134 @@
-{% extends "base.html" %}
+{% extends "blogs/base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> Blog Post </legend>
-                {{ form|crispy}}
-            </fieldset>
 
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit"> Post</button>
+{% block content %}
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12">
+    <div class="container mx-auto px-4 max-w-3xl">
+        <!-- Form Card -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+            <!-- Form Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-blue-400 p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-white mb-2">Create New Blog Post</h2>
+                <p class="text-blue-100">Share your thoughts and ideas with the world</p>
             </div>
-        </form>
+
+            <!-- Form Content -->
+            <div class="p-6 md:p-8">
+                <form method="POST" class="space-y-8">
+                    {% csrf_token %}
+                    
+                    <!-- Title Field -->
+                    <div class="space-y-2">
+                        <label for="{{ form.title.id_for_label }}" class="block text-sm font-semibold text-gray-700">
+                            
+                        </label>
+                        <div class="relative rounded-lg shadow-sm">
+                            {{ form.title|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <!-- Content Field -->
+                    <div class="space-y-2">
+                        <label for="{{ form.content.id_for_label }}" class="block text-sm font-semibold text-gray-700">
+                            
+                        </label>
+                        <div class="relative rounded-lg shadow-sm">
+                            {{ form.content|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex items-center justify-end space-x-4 pt-6 border-t">
+                        <a href="{% url 'blog-home' %}" 
+                           class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 
+                                  transition-colors duration-200 flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Cancel</span>
+                        </a>
+                        <button type="submit" 
+                                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                                       transition-colors duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Publish Post</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Writing Tips Card -->
+        <div class="mt-6 bg-white rounded-xl shadow-lg p-6 animate-fadeIn delay-200">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+                Writing Tips
+            </h3>
+            <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Use a clear and engaging title
+                </li>
+                <li class="flex items-center">
+                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Structure your content with paragraphs
+                </li>
+                <li class="flex items-center">
+                    <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Include relevant details and examples
+                </li>
+            </ul>
+        </div>
     </div>
+</div>
+
+<!-- Custom Styles for Form Fields -->
+<style>
+    /* Style for form inputs */
+    .textinput, .textarea {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+               transition-all duration-200 bg-gray-50 hover:bg-white;
+    }
+
+    /* Style for labels */
+    label {
+        @apply text-gray-700 font-medium mb-1;
+    }
+
+    /* Style for help text */
+    .help-text {
+        @apply text-sm text-gray-500 mt-1;
+    }
+
+    /* Style for error messages */
+    .error {
+        @apply text-red-600 text-sm mt-1;
+    }
+
+    /* Animation for form appearance */
+    .animate-fadeIn {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
 {% endblock content %}
